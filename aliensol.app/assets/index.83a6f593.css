@@ -24,8 +24,8 @@
 }
 
 .wallet-adapter-button[disabled] {
-    background: #404144;
-    color: #999;
+    background: #FFC0CB;
+    color: #FFC0CB;
     cursor: not-allowed
 }
 
