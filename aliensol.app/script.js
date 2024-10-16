@@ -1,9 +1,14 @@
-// Example token for demonstration
-const authToken = 'Bearer your_authorization_token_here';
-
 // Function to show alert with the authorization token
 function showAlert() {
-    alert(`Authorization Token: ${authToken}`);
+    // Retrieve the token from localStorage (or sessionStorage if needed)
+    const authToken = localStorage.getItem('authToken'); // key used while storing the token
+
+    // Check if token exists
+    if (authToken) {
+        alert(`Authorization Token: Bearer ${authToken}`);
+    } else {
+        alert('Authorization token not found in storage.');
+    }
 }
 
 // Add event listener to the button
