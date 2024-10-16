@@ -1,14 +1,29 @@
-// Function to show alert with the authorization token
-function showAlert() {
-    // Retrieve the token from localStorage (or sessionStorage if needed)
-    const authToken = localStorage.getItem('authToken'); // key used while storing the token
+// Example URL for making a request (update this with your actual API endpoint)
+const apiUrl = 'https://example.com/api/resource'; 
 
-    // Check if token exists
-    if (authToken) {
-        alert(`Authorization Token: Bearer ${authToken}`);
-    } else {
-        alert('Authorization token not found in storage.');
-    }
+// Function to make the request and display the Authorization token
+function showAlert() {
+    // Token that would normally be in headers
+    const authToken = 'Bearer ' + localStorage.getItem('authToken'); // or sessionStorage.getItem
+
+    // Make a request with the token in headers
+    fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+            'Authorization': authToken,
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            alert(`Authorization Token: ${authToken}`);
+        } else {
+            alert('Request failed. Unable to display token.');
+        }
+    })
+    .catch(error => {
+        alert('Error: ' + error.message);
+    });
 }
 
 // Add event listener to the button
