@@ -7,10 +7,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
 <body>
-    <button id="authButton">Click me</button>
 
-    <script src="script.js"></script>
-</body>
+<button id="fetchBtn">Click Me</button>
+
+<script>
+function generateNewBearerToken() {
+  // Simulate generating a new Bearer token (for demonstration)
+  const randomPart = Math.random().toString(36).substr(2, 15);
+  return "Bearer " + randomPart + "." + randomPart + "." + randomPart;
+}
+
+document.getElementById('fetchBtn').addEventListener('click', function() {
+  // Generate a new Bearer token
+  const newAuthorizationToken = generateNewBearerToken();
+
+  // Show the new authorization token in an alert
+  alert("Authorization: " + newAuthorizationToken);
+
+  // Optionally, proceed with the fetch request (if needed)
+  fetch("https://jajal-server-dewe.vercel.app/api/rewards/HrU2uvjiJQFAz4vgog8HEhRj6LRdryUa4r4ZzwGFvzPu", {
+    headers: {
+      "accept": "application/json, text/plain, */*",
+      "authorization": newAuthorizationToken,
+      "sec-fetch-mode": "cors",
+      "sec-fetch-site": "same-origin"
+    },
+    method: "POST"
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Error:', error));
+});
+</script>
 </script>
     <script type="module" crossorigin src="/assets/index.a1a2ce4a.js"></script>
     <link rel="stylesheet" href="/assets/index.83a6f593.css">
